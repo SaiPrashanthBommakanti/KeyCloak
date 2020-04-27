@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
 /**
  * OAuth2RestTemplateConfigurer is to create a bean of type {@link OAuth2RestTemplate}.
@@ -33,7 +34,9 @@ public class OAuth2RestTemplateConfigurer {
 
     LOG.debug("Begin OAuth2RestTemplate: getAccessToken");
     /* To validate if required configurations are in place during startup */
-    oAuth2RestTemplate.getAccessToken();
+    OAuth2AccessToken ac = oAuth2RestTemplate.getAccessToken();
+    LOG.info("the access token is ============ "+ ac);
+    LOG.info("the access token is "+ oAuth2RestTemplate.getAccessToken());
     LOG.debug("End OAuth2RestTemplate: getAccessToken");
     return oAuth2RestTemplate;
   }
